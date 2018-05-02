@@ -1,0 +1,57 @@
+swagger: "2.0"
+info:
+  version: "0.0.1"
+  title: Node API
+# during dev, should point to your local machine
+host: localhost:10010
+# basePath prefixes all resource paths 
+basePath: /
+# 
+schemes:
+  # tip: remove http to make production-grade
+  - http
+  - https
+# format of bodies a client can send (Content-Type)
+consumes:
+  - application/json
+# format of the responses to the client (Accepts)
+produces:
+  - application/json
+paths:
+  /:
+    get:
+      description: "This endpoint gets all the todos from the database"
+      operationId: "GetAllTodos"
+      parameters: []
+      responses:
+        200:
+          description: "Fetches all todos from the db"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Todo"
+  /swagger:
+    x-swagger-pipe: swagger_raw
+# complex objects have schema definitions
+definitions:
+  Todo:
+    type: "object"
+    properties:
+      todo_id:
+        type: "integer"
+        description: "Id for the todo"
+      datecreated:
+        type: "string"
+        format: "date-time"
+        description: "The timestamp for the todo as creacted by the server"
+      author: 
+        type: "string"
+        description: "The owner of the todo"
+      duedate:
+        type: "string"
+        format: "date-time"
+        description: "The time expected for the todo tobe completed"
+      completed:
+        type: "boolean"
+        description: "Indicates if the todo is completed or not"
+        
