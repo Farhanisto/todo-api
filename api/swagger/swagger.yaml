@@ -30,6 +30,42 @@ paths:
             type: "array"
             items:
               $ref: "#/definitions/Todo"
+      x-swagger-router-controller: "GetAllTOdos"
+    post:
+      description: "This endpoint post to the database"
+      operationId: "AddTodo"
+      produces: 
+        - "application/json"
+      parameters: 
+      - in: "body"
+        name: "todo"
+        description: "The todo to be added"
+        required: true
+        schema:
+          $ref : "#/definitions/Todo"
+      responses:
+        200:
+          description: "successfull todo add"
+      x-swagger-controller: "AddTodo"
+  /todo/{id}:
+    get:
+      description: "Get a todo by ID"
+      operationId: "FindTodoByID"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "Id of the todo to get"
+        type: "integer"
+        format: "int64"
+        required: true
+      responses:
+        200:
+          description: "Todo response"
+          schema:
+            $ref: "#/definitions/Todo"
+      x-swagger-router-controller: "FindTodoById"
   /swagger:
     x-swagger-pipe: swagger_raw
 # complex objects have schema definitions
