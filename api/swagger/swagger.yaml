@@ -30,7 +30,7 @@ paths:
             type: "array"
             items:
               $ref: "#/definitions/Todo"
-      x-swagger-router-controller: "GetAllTOdos"
+      x-swagger-router-controller: "GetAllTodos"
     post:
       description: "This endpoint post to the database"
       operationId: "AddTodo"
@@ -76,11 +76,31 @@ paths:
         required: true
         type: "integer"
         format: "int64"
-      
       responses:
         204:
           description: "Todo successfully deleted"
       x-swagger-router-controller: "DeleteToById"
+    put:
+      description: "update a single todo"
+      operationId: "UpdateTodoById"
+      parameters:
+      - name : "id"
+        in: "path"
+        description: "Id of todo to be updated"
+        required: true
+        type: "integer"
+        format: "int64"
+      - name : "updated_todo"
+        in : "body"
+        description: "The updated todo"
+        schema:
+          $ref: "#/definitions/Todo"
+      responses:
+       200:
+         description: "ok"
+       400:
+         description: "an error occured"
+      
     
   /swagger:
     x-swagger-pipe: swagger_raw
@@ -92,6 +112,9 @@ definitions:
       todo_id:
         type: "integer"
         description: "Id for the todo"
+      todo:
+        type: "string"
+        description: "The todo item"
       datecreated:
         type: "string"
         format: "date-time"
