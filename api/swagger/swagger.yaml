@@ -66,6 +66,22 @@ paths:
           schema:
             $ref: "#/definitions/Todo"
       x-swagger-router-controller: "FindTodoById"
+    delete:
+      summary: "delete a todo by id"
+      description: "Delete a todo by ID"
+      operationId: "DeleteToById"
+      parameters:
+      - name : "id"
+        in : "path"
+        required: true
+        type: "integer"
+        format: "int64"
+      
+      responses:
+        204:
+          description: "Todo successfully deleted"
+      x-swagger-router-controller: "DeleteToById"
+    
   /swagger:
     x-swagger-pipe: swagger_raw
 # complex objects have schema definitions
