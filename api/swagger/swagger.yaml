@@ -46,6 +46,8 @@ paths:
       responses:
         200:
           description: "successfull todo add"
+          schema: 
+            $ref: "#/definitions/AddResponse"
       x-swagger-controller: "AddTodo"
   /todo/{id}:
     get:
@@ -129,4 +131,10 @@ definitions:
       completed:
         type: "boolean"
         description: "Indicates if the todo is completed or not"
-        
+
+  AddResponse:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+        description: "Id of the todo added"
